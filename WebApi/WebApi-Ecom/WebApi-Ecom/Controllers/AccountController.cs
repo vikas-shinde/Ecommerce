@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
+using WebApi_Ecom.Models;
 
 namespace WebApi_Ecom.Controllers
 {
@@ -18,13 +19,11 @@ namespace WebApi_Ecom.Controllers
         [EnableCors()]
         [Route("login")]
         [HttpGet,AllowAnonymous]
-        public HttpResponseMessage Login(string UserName, string Password)
+        public IActionResult Login(string UserName, string Password)
         {
-
+            ResponseModel responseModel = new ResponseModel(HttpStatusCode.OK, "Login Successful");
             //HttpResponseMessage Request = new HttpResponseMessage();
-            HttpResponseMessage response = new HttpResponseMessage() { Content = new StringContent("Login Successfull"), StatusCode = HttpStatusCode.OK };
-       
-            return response;
+            return Ok(responseModel);
         }
     }
 }
